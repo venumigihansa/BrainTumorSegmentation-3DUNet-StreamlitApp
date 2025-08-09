@@ -219,6 +219,7 @@ streamlit run streamlit_app.py
 <img width="2532" height="1214" alt="results colab" src="https://github.com/user-attachments/assets/68230e7f-7ac0-4c00-838d-b3244e40f7f7" />
 
 <br><br>
+
 <img width="1389" height="590" alt="loss per epoch" src="https://github.com/user-attachments/assets/c32366fd-a7b2-484a-ba34-7f2e6a6efcff" />
 
 
