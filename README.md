@@ -222,19 +222,14 @@ streamlit run streamlit_app.py
 | Enhancing Dice | 0.85+ |
 
 
-
-
-
-<img width="1389" height="590" alt="loss per epoch" src="https://github.com/user-attachments/assets/c32366fd-a7b2-484a-ba34-7f2e6a6efcff" />
-
-
-
 ### Training Insights
 
 - **Convergence**: Model typically converges within 8-16 epochs
 - **Memory Usage**: ~8GB GPU memory for batch size 2
 - **Processing Time**: ~2-3 minutes per patient (inference)
 - **Patch Strategy**: 50% overlap provides optimal results
+
+<img width="1389" height="590" alt="loss per epoch" src="https://github.com/user-attachments/assets/c32366fd-a7b2-484a-ba34-7f2e6a6efcff" />
 
 ## 📁 File Structure
 
