@@ -169,46 +169,123 @@ segmentation, probabilities = predict_segmentation(model, device, patient_volume
 
 ## 🌐 Web Application
 
-Launch the interactive Streamlit web application:
+Launch the interactive Streamlit web application for easy brain tumor segmentation:
 
 ```bash
 streamlit run streamlit_app.py
 ```
 
-<img width="1915" height="1021" alt="ui" src="https://github.com/user-attachments/assets/cde70494-2a0d-42c6-a9d4-bd27ed9580d7" />
-<br><br>
+### Application Overview
 
-<img width="1852" height="868" alt="ui result" src="https://github.com/user-attachments/assets/0e4f073f-9484-4567-84d2-583f3eae3c49" />
+The web application provides an intuitive interface for medical professionals and researchers to perform brain tumor segmentation without any coding knowledge.
+
+<!-- Add screenshot of main interface here -->
+<img width="1915" height="1021" alt="ui" src="https://github.com/user-attachments/assets/34125942-f170-465d-bb83-c3b6e08df8ff" />
 
 
+### Step-by-Step Usage Guide
+
+#### 1. Model Loading
+- The application automatically detects available checkpoint files (`.pth`) in the current directory
+- Select your trained model from the dropdown menu
+- Click "🔄 Load Model" to initialize the 3D U-Net
+
+
+
+#### 2. File Upload
+Upload all 4 MRI modalities for a patient:
+- **FLAIR** - Fluid Attenuated Inversion Recovery
+- **T1** - T1-weighted images  
+- **T1CE** - T1-weighted contrast-enhanced
+- **T2** - T2-weighted images
+
+**Requirements:**
+- File format: `.nii` (NIfTI)
+- All 4 modalities must be uploaded
+- Files should follow BraTS naming convention (e.g., `patient_flair.nii`)
+
+<!-- Add screenshot of file upload area -->
+<img width="1908" height="1017" alt="ui-inference" src="https://github.com/user-attachments/assets/d00784eb-58d7-4fc4-9370-0372bfaf82b2" />
+
+
+#### 3. Configuration Settings
+Adjust inference parameters in the sidebar:
+- **Patch Size**: Choose from 96×96×48, 128×128×64, or 160×160×80
+- **Stride Ratio**: Controls overlap between patches (0.3-0.8)
+- Higher overlap = better quality but slower processing
+
+
+
+#### 4. Running Segmentation
+- Click "🚀 Run Segmentation" to start the inference process
+- Progress bar shows real-time processing status
+- Processing time: less than 1 minute for a complete brain volume
+
+
+#### 5. Results Visualization
+
+##### Interactive Slice Navigation
+- Use the slice slider to navigate through all brain slices
+- Choose between "Grid View (2×3)" or "Single Row View" layouts
+- Grid view shows: 4 modalities + segmentation + overlay
+- Single row view optimized for mobile devices
+
+<!-- Add screenshot of slice navigation -->
+<img width="1852" height="868" alt="ui result" src="https://github.com/user-attachments/assets/078fc56e-4da5-4dc2-8763-655c0e039a04" />
+
+
+
+#### 6. Statistical Analysis
+
+The application provides comprehensive tumor analysis:
+
+**Volume Statistics:**
+- Percentage of each tumor region
+- Voxel counts for quantitative analysis
+- Color-coded metrics for easy interpretation
+
+**Per-Slice Analysis:**
+- Region breakdown for the current slice
+- Real-time updates as you navigate
+- Helpful for detailed examination
+
+<!-- Add screenshot of statistics panel -->
+<img width="1830" height="875" alt="ui stats" src="https://github.com/user-attachments/assets/a8fab8bd-fbc3-4112-9b8e-65e2d69fd0b0" />
 
 
 
 
 ### Web App Features
 
-- **File Upload**: Drag-and-drop interface for NIfTI files
-- **Automatic Model Loading**: Detects and loads checkpoint files
-- **Real-time Processing**: Live progress tracking during inference
-- **Interactive Visualization**: 
-  - Slice-by-slice navigation
-  - Multi-modal image display
-  - Segmentation overlays
-  - Grid and single-row view options
-- **Statistical Analysis**: 
-  - Volume calculations per tumor region
-  - Slice-specific statistics
-  - Percentage breakdowns
-- **Export Options**: Download segmentation masks and reports
+#### 🖼️ Advanced Visualization
+- **Multi-modal Display**: View all 4 MRI sequences simultaneously
+- **Segmentation Overlay**: Color-coded tumor regions with transparency
+- **Interactive Navigation**: Smooth slice-by-slice exploration
+- **Responsive Design**: Works on desktop, tablet, and mobile devices
 
-### Usage Instructions
+#### 📊 Real-time Analytics
+- **Volume Calculations**: Automatic tumor volume quantification
+- **Progress Tracking**: Live updates during processing
+- **Error Handling**: Clear feedback for file format issues
+- **Memory Management**: Optimized for large medical images
 
-1. **Upload Files**: Select all 4 MRI modalities (FLAIR, T1, T1CE, T2)
-2. **Load Model**: Choose from available checkpoint files
-3. **Configure**: Adjust patch size and stride parameters
-4. **Process**: Click "Run Segmentation" to start inference
-5. **Explore**: Navigate through slices and analyze results
-6. **Download**: Export segmentation masks and statistics
+#### 🎨 User Interface
+- **Drag-and-Drop Upload**: Intuitive file handling
+- **Professional Styling**: Medical-grade interface design
+- **Color-coded Results**: Easy interpretation of tumor regions
+- **Responsive Layout**: Adapts to different screen sizes
+
+### Tumor Region Color Coding
+
+The application uses standardized colors for tumor segmentation:
+
+| Region | Color | Description |
+|--------|-------|-------------|
+| Background | Black | Normal brain tissue |
+| Necrotic Core | Orange | Non-enhancing tumor core |
+| Edema | Green | Peritumoral edema |
+| Enhancing | Red | Gadolinium-enhancing tumor |
+
 
 ## 📈 Results
 
