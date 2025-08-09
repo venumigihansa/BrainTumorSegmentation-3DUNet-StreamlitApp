@@ -173,6 +173,11 @@ Launch the interactive Streamlit web application:
 streamlit run streamlit_app.py
 ```
 
+<img width="1915" height="1021" alt="ui" src="https://github.com/user-attachments/assets/cde70494-2a0d-42c6-a9d4-bd27ed9580d7" />
+<img width="1852" height="868" alt="ui result" src="https://github.com/user-attachments/assets/51d5a629-b4b0-4196-afb1-1738618609b4" />
+
+
+
 ### Web App Features
 
 - **File Upload**: Drag-and-drop interface for NIfTI files
@@ -208,6 +213,9 @@ streamlit run streamlit_app.py
 | Necrotic Core Dice | 0.82+ |
 | Edema Dice | 0.88+ |
 | Enhancing Dice | 0.85+ |
+
+<img width="2532" height="1214" alt="results colab" src="https://github.com/user-attachments/assets/68230e7f-7ac0-4c00-838d-b3244e40f7f7" />
+
 
 ### Training Insights
 
