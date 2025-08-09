@@ -27,6 +27,8 @@ Brain tumor segmentation is a critical task in medical image analysis that helps
 - **Peritumoral edema** (Label 2)
 - **GD-enhancing tumor** (Label 3)
 
+<img width="2532" height="1214" alt="results colab" src="https://github.com/user-attachments/assets/68230e7f-7ac0-4c00-838d-b3244e40f7f7" />
+
 ## ✨ Features
 
 - **3D U-Net Architecture**: State-of-the-art deep learning model for volumetric segmentation
@@ -174,6 +176,7 @@ streamlit run streamlit_app.py
 ```
 
 <img width="1915" height="1021" alt="ui" src="https://github.com/user-attachments/assets/cde70494-2a0d-42c6-a9d4-bd27ed9580d7" />
+<br><br>
 
 <img width="1852" height="868" alt="ui result" src="https://github.com/user-attachments/assets/0e4f073f-9484-4567-84d2-583f3eae3c49" />
 
@@ -218,9 +221,9 @@ streamlit run streamlit_app.py
 | Edema Dice | 0.88+ |
 | Enhancing Dice | 0.85+ |
 
-<img width="2532" height="1214" alt="results colab" src="https://github.com/user-attachments/assets/68230e7f-7ac0-4c00-838d-b3244e40f7f7" />
 
-<br><br>
+
+
 
 <img width="1389" height="590" alt="loss per epoch" src="https://github.com/user-attachments/assets/c32366fd-a7b2-484a-ba34-7f2e6a6efcff" />
 
