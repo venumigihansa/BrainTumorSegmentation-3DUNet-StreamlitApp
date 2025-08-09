@@ -175,6 +175,8 @@ streamlit run streamlit_app.py
 
 <img width="1915" height="1021" alt="ui" src="https://github.com/user-attachments/assets/cde70494-2a0d-42c6-a9d4-bd27ed9580d7" />
 
+<img width="1852" height="868" alt="ui result" src="https://github.com/user-attachments/assets/0e4f073f-9484-4567-84d2-583f3eae3c49" />
+
 
 
 
