@@ -1,44 +1,66 @@
-🧠 Brain Tumor Segmentation with 3D U-Net
+# 🧠 Brain Tumor Segmentation with 3D U-Net
+
 A deep learning project for automated brain tumor segmentation using 3D U-Net architecture on the BraTS2020 dataset. This project implements a complete pipeline from data preprocessing to model deployment with an interactive Streamlit web application.
 
+## 📋 Table of Contents
 
-🔍 Overview
+- [Overview](#overview)
+- [Features](#features)
+- [Dataset](#dataset)
+- [Model Architecture](#model-architecture)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Training](#training)
+- [Inference](#inference)
+- [Web Application](#web-application)
+- [Results](#results)
+- [File Structure](#file-structure)
+- [Contributing](#contributing)
+- [License](#license)
+
+## 🔍 Overview
+
 Brain tumor segmentation is a critical task in medical image analysis that helps radiologists and clinicians in diagnosis, treatment planning, and monitoring. This project implements a 3D U-Net model to automatically segment brain tumors from multimodal MRI scans into four distinct regions:
 
-Background (Label 0)
-Necrotic/Non-enhancing tumor core (Label 1)
-Peritumoral edema (Label 2)
-GD-enhancing tumor (Label 3)
+- **Background** (Label 0)
+- **Necrotic/Non-enhancing tumor core** (Label 1)
+- **Peritumoral edema** (Label 2)
+- **GD-enhancing tumor** (Label 3)
 
-✨ Features
+## ✨ Features
 
-3D U-Net Architecture: State-of-the-art deep learning model for volumetric segmentation
-Multi-modal Input: Processes FLAIR, T1, T1CE, and T2 MRI sequences simultaneously
-Patch-based Training: Efficient memory usage with overlapping patch extraction
-Data Augmentation: TorchIO-based augmentations for robust training
-Combined Loss Function: Dice Loss + Cross-Entropy for optimal performance
-Interactive Web App: User-friendly Streamlit interface for model deployment
-Comprehensive Evaluation: Dice scores and volume statistics for each tumor region
-Early Stopping: Prevents overfitting with patience-based training
+- **3D U-Net Architecture**: State-of-the-art deep learning model for volumetric segmentation
+- **Multi-modal Input**: Processes FLAIR, T1, T1CE, and T2 MRI sequences simultaneously
+- **Patch-based Training**: Efficient memory usage with overlapping patch extraction
+- **Data Augmentation**: TorchIO-based augmentations for robust training
+- **Combined Loss Function**: Dice Loss + Cross-Entropy for optimal performance
+- **Interactive Web App**: User-friendly Streamlit interface for model deployment
+- **Comprehensive Evaluation**: Dice scores and volume statistics for each tumor region
+- **Early Stopping**: Prevents overfitting with patience-based training
 
-📊 Dataset
-This project uses the BraTS2020 (Multimodal Brain Tumor Segmentation Challenge 2020) dataset:
+## 📊 Dataset
 
-Training: 369 cases with ground truth segmentations
-Validation: 125 cases (used for final evaluation)
-Modalities: T1, T1CE, T2, FLAIR (240×240×155 voxels each)
-Annotations: Expert-verified tumor segmentations
+This project uses the **BraTS2020 (Multimodal Brain Tumor Segmentation Challenge 2020)** dataset:
 
-Data Preprocessing
+- **Training**: 369 cases with ground truth segmentations
+- **Validation**: 125 cases (used for final evaluation)
+- **Modalities**: T1, T1CE, T2, FLAIR (240×240×155 voxels each)
+- **Annotations**: Expert-verified tumor segmentations
 
-Normalization: Z-score normalization per modality
-Label Conversion: Maps label 4 → 3 for consistency
-Patch Extraction: 128×128×64 patches with configurable stride
-Tumor-aware Sampling: Balanced sampling of tumor vs background patches
+### Data Preprocessing
 
-🏗️ Model Architecture
-3D U-Net Implementation
+- **Normalization**: Z-score normalization per modality
+- **Label Conversion**: Maps label 4 → 3 for consistency
+- **Patch Extraction**: 128×128×64 patches with configurable stride
+- **Tumor-aware Sampling**: Balanced sampling of tumor vs background patches
+
+## 🏗️ Model Architecture
+
+### 3D U-Net Implementation
+
 The model follows the U-Net architecture adapted for 3D volumetric data:
+
+```
 Input: [Batch, 4, 128, 128, 64] (4 MRI modalities)
 ├── Encoder Path
 │   ├── Conv3D Block 1: [4 → 16] + MaxPool3D
@@ -53,22 +75,27 @@ Input: [Batch, 4, 128, 128, 64] (4 MRI modalities)
     ├── UpConv + Skip 1: [32+16 → 16]
     └── Final Conv: [16 → 4] (classes)
 Output: [Batch, 4, 128, 128, 64] (segmentation probabilities)
-Key Components
+```
 
-Residual Connections: Optional residual blocks in convolution layers
-Batch Normalization: Stabilizes training and improves convergence
-Dropout: 3D dropout layers for regularization (20% rate)
-Skip Connections: Preserves fine-grained spatial information
+### Key Components
 
-🛠️ Installation
-Prerequisites
+- **Residual Connections**: Optional residual blocks in convolution layers
+- **Batch Normalization**: Stabilizes training and improves convergence
+- **Dropout**: 3D dropout layers for regularization (20% rate)
+- **Skip Connections**: Preserves fine-grained spatial information
 
-Python 3.8+
-CUDA-compatible GPU (recommended)
-16GB+ RAM for training
+## 🛠️ Installation
 
-Dependencies
-bash# Clone the repository
+### Prerequisites
+
+- Python 3.8+
+- CUDA-compatible GPU (recommended)
+- 16GB+ RAM for training
+
+### Dependencies
+
+```bash
+# Clone the repository
 git clone https://github.com/your-username/brain-tumor-segmentation.git
 cd brain-tumor-segmentation
 
@@ -80,22 +107,31 @@ pip install opencv-python pillow seaborn
 
 # For Colab/Kaggle environments
 pip install kaggle nilearn
-Dataset Setup
+```
 
-Kaggle API Setup (for automatic download):
-bash# Place your kaggle.json in ~/.kaggle/
-chmod 600 ~/.kaggle/kaggle.json
+### Dataset Setup
 
-Download BraTS2020:
-python# Automatic download (in notebook)
-!kaggle datasets download -d awsaf49/brats20-dataset-training-validation
-!unzip brats20-dataset-training-validation.zip -d brats20_data
+1. **Kaggle API Setup** (for automatic download):
+   ```bash
+   # Place your kaggle.json in ~/.kaggle/
+   chmod 600 ~/.kaggle/kaggle.json
+   ```
 
+2. **Download BraTS2020**:
+   ```python
+   # Automatic download (in notebook)
+   !kaggle datasets download -d awsaf49/brats20-dataset-training-validation
+   !unzip brats20-dataset-training-validation.zip -d brats20_data
+   ```
 
-🚀 Usage
-Training
+## 🚀 Usage
+
+### Training
+
 Run the complete training pipeline:
-python# Configure paths and hyperparameters
+
+```python
+# Configure paths and hyperparameters
 TRAIN_DATASET_PATH = '/path/to/BraTS2020_TrainingData'
 NUM_EPOCHS = 16
 BATCH_SIZE = 2
@@ -108,66 +144,81 @@ optimizer = torch.optim.AdamW(model.parameters(), lr=LEARNING_RATE, weight_decay
 
 # Start training
 python train.py
-Key Training Features
+```
 
-Patch-based Learning: Extracts overlapping 3D patches for efficient training
-Data Augmentation: Random flips, noise injection using TorchIO
-Mixed Training: Balanced tumor and background patches (configurable ratio)
-Checkpointing: Saves model state every epoch with best model tracking
-Early Stopping: Stops training when validation performance plateaus
+### Key Training Features
 
-Inference
-python# Load trained model
+- **Patch-based Learning**: Extracts overlapping 3D patches for efficient training
+- **Data Augmentation**: Random flips, noise injection using TorchIO
+- **Mixed Training**: Balanced tumor and background patches (configurable ratio)
+- **Checkpointing**: Saves model state every epoch with best model tracking
+- **Early Stopping**: Stops training when validation performance plateaus
+
+### Inference
+
+```python
+# Load trained model
 checkpoint = torch.load('best_model.pth')
 model.load_state_dict(checkpoint['model_state_dict'])
 
 # Run inference on new patient
 segmentation, probabilities = predict_segmentation(model, device, patient_volume)
-🌐 Web Application
+```
+
+## 🌐 Web Application
+
 Launch the interactive Streamlit web application:
-bashstreamlit run streamlit_app.py
-Web App Features
 
-File Upload: Drag-and-drop interface for NIfTI files
-Automatic Model Loading: Detects and loads checkpoint files
-Real-time Processing: Live progress tracking during inference
-Interactive Visualization:
+```bash
+streamlit run streamlit_app.py
+```
 
-Slice-by-slice navigation
-Multi-modal image display
-Segmentation overlays
-Grid and single-row view options
+### Web App Features
 
+- **File Upload**: Drag-and-drop interface for NIfTI files
+- **Automatic Model Loading**: Detects and loads checkpoint files
+- **Real-time Processing**: Live progress tracking during inference
+- **Interactive Visualization**: 
+  - Slice-by-slice navigation
+  - Multi-modal image display
+  - Segmentation overlays
+  - Grid and single-row view options
+- **Statistical Analysis**: 
+  - Volume calculations per tumor region
+  - Slice-specific statistics
+  - Percentage breakdowns
+- **Export Options**: Download segmentation masks and reports
 
-Statistical Analysis:
+### Usage Instructions
 
-Volume calculations per tumor region
-Slice-specific statistics
-Percentage breakdowns
+1. **Upload Files**: Select all 4 MRI modalities (FLAIR, T1, T1CE, T2)
+2. **Load Model**: Choose from available checkpoint files
+3. **Configure**: Adjust patch size and stride parameters
+4. **Process**: Click "Run Segmentation" to start inference
+5. **Explore**: Navigate through slices and analyze results
+6. **Download**: Export segmentation masks and statistics
 
+## 📈 Results
 
-Export Options: Download segmentation masks and reports
+### Model Performance
 
-Usage Instructions
+| Metric | Score |
+|--------|--------|
+| Mean Dice Score | 0.85+ |
+| Necrotic Core Dice | 0.82+ |
+| Edema Dice | 0.88+ |
+| Enhancing Dice | 0.85+ |
 
-Upload Files: Select all 4 MRI modalities (FLAIR, T1, T1CE, T2)
-Load Model: Choose from available checkpoint files
-Configure: Adjust patch size and stride parameters
-Process: Click "Run Segmentation" to start inference
-Explore: Navigate through slices and analyze results
-Download: Export segmentation masks and statistics
+### Training Insights
 
-📈 Results
-Model Performance
-MetricScoreMean Dice Score0.85+Necrotic Core Dice0.82+Edema Dice0.88+Enhancing Dice0.85+
-Training Insights
+- **Convergence**: Model typically converges within 8-16 epochs
+- **Memory Usage**: ~8GB GPU memory for batch size 2
+- **Processing Time**: ~2-3 minutes per patient (inference)
+- **Patch Strategy**: 50% overlap provides optimal results
 
-Convergence: Model typically converges within 8-16 epochs
-Memory Usage: ~8GB GPU memory for batch size 2
-Processing Time: ~2-3 minutes per patient (inference)
-Patch Strategy: 50% overlap provides optimal results
+## 📁 File Structure
 
-📁 File Structure
+```
 brain-tumor-segmentation/
 │
 ├── README.md                 # Project documentation
@@ -196,9 +247,14 @@ brain-tumor-segmentation/
     ├── training_plots.png   # Loss and dice curves
     ├── sample_predictions/  # Example segmentations
     └── evaluation_metrics.txt
-🔧 Configuration
-Training Hyperparameters
-python# Model Configuration
+```
+
+## 🔧 Configuration
+
+### Training Hyperparameters
+
+```python
+# Model Configuration
 IN_CHANNELS = 4              # FLAIR, T1, T1CE, T2
 NUM_CLASSES = 4              # Background, Necrotic, Edema, Enhancing
 FEAT_CHANNELS = [16, 32, 64, 128, 256]  # Feature channels per level
@@ -215,53 +271,75 @@ PATIENCE = 3                 # Early stopping patience
 PATCH_SIZE = (128, 128, 64)  # 3D patch dimensions
 STRIDE = (64, 64, 32)        # Overlapping stride
 BG_RATIO = 0.1               # Background to tumor patch ratio
-Inference Configuration
-python# Patch-based Inference
+```
+
+### Inference Configuration
+
+```python
+# Patch-based Inference
 PATCH_SIZE = (128, 128, 64)  # Must match training
 STRIDE = (64, 64, 32)        # Overlap for smooth reconstruction
 BATCH_SIZE = 4               # Inference batch size
-🏥 Clinical Applications
-Potential Use Cases
+```
 
-Tumor Volume Quantification: Automated measurement for treatment monitoring
-Surgical Planning: Precise tumor boundary delineation
-Treatment Response Assessment: Longitudinal volume change tracking
-Clinical Trials: Standardized endpoint evaluation
-Screening Programs: Large-scale automated analysis
+## 🏥 Clinical Applications
 
-Clinical Validation Notes
-⚠️ Important: This is a research implementation. Clinical use requires:
+### Potential Use Cases
 
-Regulatory approval (FDA, CE marking, etc.)
-Extensive clinical validation
-Integration with PACS systems
-Radiologist oversight and validation
+- **Tumor Volume Quantification**: Automated measurement for treatment monitoring
+- **Surgical Planning**: Precise tumor boundary delineation
+- **Treatment Response Assessment**: Longitudinal volume change tracking
+- **Clinical Trials**: Standardized endpoint evaluation
+- **Screening Programs**: Large-scale automated analysis
 
-🤝 Contributing
+### Clinical Validation Notes
+
+⚠️ **Important**: This is a research implementation. Clinical use requires:
+- Regulatory approval (FDA, CE marking, etc.)
+- Extensive clinical validation
+- Integration with PACS systems
+- Radiologist oversight and validation
+
+## 🤝 Contributing
+
 We welcome contributions! Please follow these steps:
 
-Fork the repository
-Create a feature branch (git checkout -b feature/amazing-feature)
-Commit your changes (git commit -m 'Add amazing feature')
-Push to the branch (git push origin feature/amazing-feature)
-Open a Pull Request
+1. **Fork** the repository
+2. **Create** a feature branch (`git checkout -b feature/amazing-feature`)
+3. **Commit** your changes (`git commit -m 'Add amazing feature'`)
+4. **Push** to the branch (`git push origin feature/amazing-feature`)
+5. **Open** a Pull Request
 
-Development Guidelines
+### Development Guidelines
 
-Follow PEP 8 style guidelines
-Add docstrings to new functions
-Include unit tests for new features
-Update documentation as needed
+- Follow PEP 8 style guidelines
+- Add docstrings to new functions
+- Include unit tests for new features
+- Update documentation as needed
 
-📚 References
+## 📚 References
 
-3D U-Net Paper: Çiçek, Ö., et al. "3D U-Net: Learning Dense Volumetric Segmentation from Sparse Annotation." MICCAI 2016.
-BraTS Challenge: Menze, B.H., et al. "The Multimodal Brain Tumor Image Segmentation Benchmark (BRATS)." IEEE TMI 2015.
-TorchIO: Pérez-García, F., et al. "TorchIO: a Python library for efficient loading, preprocessing, augmentation and patch-based sampling of medical images." CMIG 2021.
+- **3D U-Net Paper**: Çiçek, Ö., et al. "3D U-Net: Learning Dense Volumetric Segmentation from Sparse Annotation." MICCAI 2016.
+- **BraTS Challenge**: Menze, B.H., et al. "The Multimodal Brain Tumor Image Segmentation Benchmark (BRATS)." IEEE TMI 2015.
+- **TorchIO**: Pérez-García, F., et al. "TorchIO: a Python library for efficient loading, preprocessing, augmentation and patch-based sampling of medical images." CMIG 2021.
 
-🙏 Acknowledgments
+## 🙏 Acknowledgments
 
-BraTS Organizers for providing the comprehensive dataset
-Medical Imaging Community for open-source tools and libraries
-PyTorch Team for the deep learning framework
-Streamlit for the web application framework
+- **BraTS Organizers** for providing the comprehensive dataset
+- **Medical Imaging Community** for open-source tools and libraries
+- **PyTorch Team** for the deep learning framework
+- **Streamlit** for the web application framework
+
+## 📄 License
+
+This project is licensed under the Apache 2.0 License - see the [LICENSE](LICENSE) file for details.
+
+## ⚠️ Disclaimer
+
+This software is for research and educational purposes only. It is not intended for clinical diagnosis or treatment decisions. Always consult with qualified medical professionals for medical advice.
+
+---
+
+**Built with ❤️ for the medical imaging community**
+
+For questions, issues, or suggestions, please open an issue or contact [your-email@domain.com](mailto:your-email@domain.com).
