@@ -293,10 +293,10 @@ The application uses standardized colors for tumor segmentation:
 
 | Metric | Score |
 |--------|--------|
-| Mean Dice Score | 0.85+ |
-| Necrotic Core Dice | 0.82+ |
-| Edema Dice | 0.88+ |
-| Enhancing Dice | 0.85+ |
+| Mean Dice Score | 0.65+ |
+| Necrotic Core Dice | 0.52+ |
+| Edema Dice | 0.52+ |
+| Enhancing Dice | 0.50+ |
 
 
 ### Training Insights
