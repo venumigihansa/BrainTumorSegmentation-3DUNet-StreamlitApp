@@ -402,12 +402,6 @@ We welcome contributions! Please follow these steps:
 4. **Push** to the branch (`git push origin feature/amazing-feature`)
 5. **Open** a Pull Request
 
-### Development Guidelines
-
-- Follow PEP 8 style guidelines
-- Add docstrings to new functions
-- Include unit tests for new features
-- Update documentation as needed
 
 ## 📚 References
 
@@ -430,8 +424,4 @@ This project is licensed under the Apache 2.0 License - see the [LICENSE](LICENS
 
 This software is for research and educational purposes only. It is not intended for clinical diagnosis or treatment decisions. Always consult with qualified medical professionals for medical advice.
 
----
 
-**Built with ❤️ for the medical imaging community**
-
-For questions, issues, or suggestions, please open an issue or contact [your-email@domain.com](mailto:your-email@domain.com).
