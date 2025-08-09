@@ -176,7 +176,7 @@ streamlit run streamlit_app.py
 <img width="1915" height="1021" alt="ui" src="https://github.com/user-attachments/assets/cde70494-2a0d-42c6-a9d4-bd27ed9580d7" />
 
 
-<img width="1852" height="868" alt="ui result" src="https://github.com/user-attachments/assets/51d5a629-b4b0-4196-afb1-1738618609b4" />
+
 
 
 
@@ -218,6 +218,7 @@ streamlit run streamlit_app.py
 
 <img width="2532" height="1214" alt="results colab" src="https://github.com/user-attachments/assets/68230e7f-7ac0-4c00-838d-b3244e40f7f7" />
 
+<br><br>
 <img width="1389" height="590" alt="loss per epoch" src="https://github.com/user-attachments/assets/c32366fd-a7b2-484a-ba34-7f2e6a6efcff" />
 
 
